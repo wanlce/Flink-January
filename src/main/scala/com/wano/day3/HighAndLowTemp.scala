@@ -42,7 +42,6 @@ object HighAndLowTemp {
   }
   class WindResult extends ProcessWindowFunction[(String, Double, Double), MinMaxTemp, String, TimeWindow] {
     override def process(key: String, context: Context, elements: Iterable[(String, Double, Double)], out: Collector[MinMaxTemp]): Unit = {
-
       val minMax = elements.head
       out.collect(MinMaxTemp(key, minMax._2, minMax._3, context.window.getEnd))
     }
