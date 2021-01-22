@@ -13,10 +13,9 @@ object RedistributeExample {
       .setParallelism(1)
       .map(_.id).setParallelism(1)
 
-    stream.shuffle
+    stream.print()
 
-
-
+    env.execute()
 
   }
 
