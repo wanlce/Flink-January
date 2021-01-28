@@ -26,7 +26,7 @@ class SensorSource extends RichParallelSourceFunction[SensorReading] {
       val curTime = Calendar.getInstance().getTimeInMillis
 
       curFTemp.foreach( t=> ctx.collect(SensorReading(t._1,curTime,t._2)))
-      Thread.sleep(100)
+      Thread.sleep(300)
     }
   }
   override def cancel(): Unit = runing = false
