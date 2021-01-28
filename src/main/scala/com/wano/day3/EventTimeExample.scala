@@ -18,9 +18,9 @@ object EventTimeExample {
     env.setParallelism(1)
     env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
 
-    // 系统默认每隔200ms插入一次水位线
-    // 设置为每隔一分钟插入一次
-    env.getConfig.setAutoWatermarkInterval(6000)
+        // 系统默认每隔200ms插入一次水位线
+        // 设置为每隔一分钟插入一次
+        env.getConfig.setAutoWatermarkInterval(6000)
     val stream = env.socketTextStream("localhost",7777,'\n')
       .map( line => {
         val arr = line.split(" ")

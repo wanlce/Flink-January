@@ -23,7 +23,7 @@ object GenWatermark {
 
     // 系统默认每隔200ms插入一次水位线
     // 设置为每隔一分钟插入一次
-    env.getConfig.setAutoWatermarkInterval(6000)
+    env.getConfig.setAutoWatermarkInterval(60000)
 
     val stream = env.socketTextStream("localhost",7777,'\n')
       .map( line => {
@@ -49,7 +49,7 @@ object GenWatermark {
     val bound: Long = 10 * 1000L
     var maxTs: Long = Long.MinValue + bound
 
-    // 定义抽取时间戳的逻辑，每到一个事件就调用一次
+  // 定义抽取时间戳的逻辑，每到一个事件就调用一次
     override def extractTimestamp(t: (String, Long), l: Long): Long = {
       maxTs = maxTs.max(t._2)  // 更新观察到的最大时间戳
       t._2  //将抽取的时间戳返回
