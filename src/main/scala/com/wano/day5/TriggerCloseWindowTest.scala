@@ -26,7 +26,7 @@ object TriggerCloseWindowTest {
       .assignAscendingTimestamps(_._2)
       .keyBy(_._1)
       .timeWindow(Time.seconds(10))
-      .trigger(new OneSecondTrigger)
+    //  .trigger(new OneSecondTrigger)
       .process(new WindowCount)
 
     stream.print()
@@ -49,7 +49,6 @@ object TriggerCloseWindowTest {
       println("触发了")
       TriggerResult.FIRE_AND_PURGE
     }
-
     override def clear(window: TimeWindow, ctx: TriggerContext): Unit = {
 
     }
